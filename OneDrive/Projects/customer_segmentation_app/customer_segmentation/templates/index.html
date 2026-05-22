@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Customer Segmentation · AI Classifier</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body>
+
+  <!-- Background grid -->
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <div class="layout">
+
+    <!-- ── Header ─────────────────────────────── -->
+    <header class="header">
+      <div class="badge">K-Means · 4 Segments</div>
+      <h1>Customer<br /><span class="accent">Segment</span><br />Classifier</h1>
+      <p class="subtitle">Enter customer attributes to predict which behavioural segment they belong to.</p>
+    </header>
+
+    <!-- ── Form card ───────────────────────────── -->
+    <main class="card" id="form-card">
+      <div class="card-label">INPUT FEATURES</div>
+
+      <div class="grid-inputs">
+
+        <div class="field">
+          <label for="income">Annual Income <span class="unit">USD</span></label>
+          <input type="number" id="income" placeholder="52000" min="0" max="200000" />
+        </div>
+
+        <div class="field">
+          <label for="age">Age <span class="unit">years</span></label>
+          <input type="number" id="age" placeholder="44" min="18" max="100" />
+        </div>
+
+        <div class="field">
+          <label for="recency">Recency <span class="unit">days since purchase</span></label>
+          <input type="number" id="recency" placeholder="49" min="0" max="365" />
+        </div>
+
+        <div class="field">
+          <label for="spending">Total Spending <span class="unit">USD / year</span></label>
+          <input type="number" id="spending" placeholder="600" min="0" />
+        </div>
+
+        <div class="field">
+          <label for="purchases">No. of Purchases</label>
+          <input type="number" id="purchases" placeholder="14" min="0" />
+        </div>
+
+        <div class="field">
+          <label for="webvisits">Web Visits <span class="unit">/ month</span></label>
+          <input type="number" id="webvisits" placeholder="5" min="0" />
+        </div>
+
+      </div><!-- /grid-inputs -->
+
+      <button class="btn-predict" id="predictBtn">
+        <span class="btn-text">Classify Customer</span>
+        <span class="btn-icon">→</span>
+      </button>
+
+      <div id="error-msg" class="error-msg" hidden></div>
+    </main>
+
+    <!-- ── Result card ─────────────────────────── -->
+    <section class="result-card" id="result-card" hidden>
+      <div class="result-header">
+        <div class="result-emoji" id="res-emoji">👑</div>
+        <div>
+          <div class="result-cluster-id" id="res-cluster">CLUSTER 3</div>
+          <div class="result-name" id="res-name">VIP Customers</div>
+        </div>
+      </div>
+
+      <p class="result-desc" id="res-desc"></p>
+
+      <div class="result-tags" id="res-tags"></div>
+
+      <button class="btn-reset" id="resetBtn">← New Prediction</button>
+    </section>
+
+  </div><!-- /layout -->
+
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
